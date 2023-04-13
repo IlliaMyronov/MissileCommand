@@ -8,6 +8,6 @@ public class RocketMovement : MonoBehaviour
 
     private void Start()
     {
-        rb.velocity = new Vector2(0, -5);
+        rb.velocity = new Vector2(0, -2);
     }
 }
