@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class GameLogic : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private RocketSpawner spawnerScript;
+    private float timeSinceLastSpawn = 0;
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        if(timeSinceLastSpawn < 1)
+        {
+            timeSinceLastSpawn += Time.deltaTime;
+        }
+        else
+        {
+            spawnerScript.GenerateRocket();
+            timeSinceLastSpawn = 0;
+        }
     }
 }
