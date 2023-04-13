@@ -9,7 +9,7 @@ public class GameLogic : MonoBehaviour
 
     private void Update()
     {
-        if(timeSinceLastSpawn < 2)
+        if(timeSinceLastSpawn < 1)
         {
             timeSinceLastSpawn += Time.deltaTime;
         }
