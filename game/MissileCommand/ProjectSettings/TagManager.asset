@@ -45,3 +45,9 @@ TagManager:
   - name: world
     uniqueID: 3726611551
     locked: 0
+  - name: buildings
+    uniqueID: 2003274631
+    locked: 0
+  - name: New Layer 3
+    uniqueID: 2816056077
+    locked: 0
