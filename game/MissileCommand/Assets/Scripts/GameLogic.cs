@@ -23,7 +23,6 @@ public class GameLogic : MonoBehaviour
         {
             // need to select a target for a rocket before 
             int building = Mathf.FloorToInt(Random.Range(0, buildingsList.Count));
-            Debug.Log(building);
             spawnerScript.GenerateRocket(buildingsList[building].transform.GetChild(0).transform.position);
             timeSinceLastSpawn = 0;
         }
