@@ -156,9 +156,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rocketPrefab: {fileID: 3015539479763432177, guid: fb1ab260e5207ee40a592e1065248dd5, type: 3}
   yStartPosition: 10
-  xLowerBoundary: -10
-  xHigherBoundary: 10
-  lowBoundary: -10
+  xSpawnBoundaries: {x: -10, y: 10}
+  velocityBoundaries: {x: 2, y: 4}
 --- !u!114 &13443537
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,6 +171,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnerScript: {fileID: 13443536}
+  buildingsList:
+  - {fileID: 1595287401}
+  - {fileID: 658037002}
+  - {fileID: 2024840462}
+  respawnTime: 1
 --- !u!114 &13443538
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,9 +190,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rocketPrefab: {fileID: 3015539479763432177, guid: fb1ab260e5207ee40a592e1065248dd5, type: 3}
   yStartPosition: 20
-  xLowerBoundary: -20
-  xHigherBoundary: 20
-  lowBoundary: 0
+  xSpawnBoundaries: {x: 0, y: 0}
+  velocityBoundaries: {x: 0, y: 0}
 --- !u!4 &13443539
 Transform:
   m_ObjectHideFlags: 0
