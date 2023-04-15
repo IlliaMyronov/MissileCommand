@@ -225,8 +225,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 290.2, y: 185.4}
-  m_SizeDelta: {x: 40, y: 13}
+  m_AnchoredPosition: {x: 284.8, y: 185.4}
+  m_SizeDelta: {x: 50, y: 13}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &54640772
 MonoBehaviour:
@@ -361,7 +361,7 @@ GameObject:
   - component: {fileID: 274619952}
   - component: {fileID: 274619951}
   m_Layer: 5
-  m_Name: KILLS TEXT
+  m_Name: SCORE TEXT
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -384,8 +384,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 290.20004, y: 172.2}
-  m_SizeDelta: {x: 40, y: 13}
+  m_AnchoredPosition: {x: 284.8, y: 172.39}
+  m_SizeDelta: {x: 50, y: 13}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &274619951
 MonoBehaviour:
@@ -420,7 +420,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'KILLS:'
+  m_Text: 'SCORE :'
 --- !u!222 &274619952
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -464,8 +464,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 290.20004, y: 158.7}
-  m_SizeDelta: {x: 40, y: 13}
+  m_AnchoredPosition: {x: 284.8, y: 159.33}
+  m_SizeDelta: {x: 50, y: 13}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &279846259
 MonoBehaviour:
@@ -993,7 +993,7 @@ GameObject:
   - component: {fileID: 699200754}
   - component: {fileID: 699200753}
   m_Layer: 5
-  m_Name: KILLS NUMBERS
+  m_Name: SCORE NUMBERS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1016,7 +1016,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 332.3, y: 172.2}
+  m_AnchoredPosition: {x: 332.3, y: 172.39}
   m_SizeDelta: {x: 45, y: 13}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &699200753
@@ -7075,7 +7075,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 332.3, y: 158.7}
+  m_AnchoredPosition: {x: 332.3, y: 159.33}
   m_SizeDelta: {x: 45, y: 13}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1388585399
