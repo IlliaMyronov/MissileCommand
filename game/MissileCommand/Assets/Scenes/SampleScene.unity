@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 13443539}
   - component: {fileID: 13443537}
   - component: {fileID: 13443536}
+  - component: {fileID: 13443540}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -168,12 +169,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3205131f41599d4f950f9a5e309ba10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnerScript: {fileID: 13443536}
+  rocketController: {fileID: 13443540}
   cam: {fileID: 2097895257}
-  buildingsList: []
+  generatorList:
+  - {fileID: 639455717}
+  - {fileID: 460719545}
+  - {fileID: 1055584230}
+  turretList:
+  - {fileID: 791058534}
+  - {fileID: 1208011589}
+  - {fileID: 1383782327}
   respawnTimeRange: {x: 0.5, y: 1.5}
-  yRocketLaunch: 10
-  xRocketLaunchRange: {x: -10, y: 10}
 --- !u!4 &13443539
 Transform:
   m_ObjectHideFlags: 0
@@ -182,13 +188,28 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 13443535}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.8504619, y: 0.19495213, z: 10.12312}
+  m_LocalPosition: {x: 0.8504619, y: 0.19495213, z: 0.12312031}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2097895258}
-  m_RootOrder: -1
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &13443540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 13443535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a270ee019b6574c47be8103de3db8562, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnerScript: {fileID: 13443536}
+  xRocketLaunchRange: {x: -10, y: 10}
+  yRocketLaunch: 10
 --- !u!1 &54640770
 GameObject:
   m_ObjectHideFlags: 0
@@ -7969,7 +7990,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1655405591}
-  - {fileID: 13443539}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

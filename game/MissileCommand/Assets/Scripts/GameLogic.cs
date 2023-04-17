@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class GameLogic : MonoBehaviour
 {
-    [SerializeField] private RocketSpawner spawnerScript;
+    [SerializeField] private RocketController rocketController;
     [SerializeField] private Camera cam;
-    [SerializeField] private List<GameObject> buildingsList;
+    [SerializeField] private List<GameObject> generatorList;
+    [SerializeField] private List<GameObject> turretList;
     [SerializeField] private Vector2 respawnTimeRange;
-    [SerializeField] private float yRocketLaunch;
-    [SerializeField] private Vector2 xRocketLaunchRange;
+    
 
     private float timeSinceLastSpawn;
     private float respawnTime;
@@ -28,15 +28,51 @@ public class GameLogic : MonoBehaviour
         else
         {
             // need to select a target for a rocket before 
-            int building = Mathf.FloorToInt(Random.Range(0, buildingsList.Count));
-            spawnerScript.GenerateRocket(buildingsList[building].transform.position, new Vector2(Random.Range(xRocketLaunchRange.x, xRocketLaunchRange.y), yRocketLaunch), true);
+            int building = Mathf.FloorToInt(Random.Range(0, generatorList.Count + turretList.Count));
+
+            if(building >= generatorList.Count)
+            {
+                building = building - generatorList.Count;
+                rocketController.CreateEnemyRocket(turretList[building].transform.position);
+            }
+            else
+            {
+                rocketController.CreateEnemyRocket(generatorList[building].transform.position);
+            }
+
             respawnTime = Random.Range(respawnTimeRange.x, respawnTimeRange.y);
             timeSinceLastSpawn = 0;
         }
 
-        if(Input.GetMouseButtonDown(0))
+        if(Input.GetMouseButtonUp(0))
         {
             Vector2 clickPos = new Vector2(cam.ScreenToWorldPoint(Input.mousePosition).x, cam.ScreenToWorldPoint(Input.mousePosition).y);
+            rocketController.CreatePlayerRocket(findClosest(turretList, clickPos).transform.position, clickPos);
         }
+    }
+
+    private GameObject findClosest(List<GameObject> list, Vector2 coordinates, int element = -1)
+    {
+        element += 1;
+        if(element == list.Count - 1)
+        {
+            return list[element];
+        }
+        Debug.Log(element + "    " + list.Count);
+        GameObject nextTop = findClosest(list, coordinates, element);
+
+        if (findDistance(list[element].transform.position, coordinates) < findDistance(nextTop.transform.position, coordinates))
+        {
+            return list[element];
+        }
+        else
+        {
+            return nextTop;
+        }
+    }
+
+    private float findDistance(Vector3 obj1, Vector2 obj2)
+    {
+        return Mathf.Sqrt(Mathf.Pow((obj1.x - obj2.x) , 2) + Mathf.Pow((obj1.y - obj2.y) , 2));
     }
 }
