@@ -5,74 +5,78 @@ using UnityEngine;
 
 public class RocketSpawner : MonoBehaviour
 {
-    // prefab of an enemy rocket
-    [SerializeField] private GameObject rocketPrefab;
-
-    // starting y position of a rocket
-    [SerializeField] private int yStartPosition;
-
-    // min and max of x spawn coordinates
-    [SerializeField] private Vector2 xSpawnBoundaries;
+    // prefabs of rockets
+    [SerializeField] private GameObject enemyRocketPrefab;
+    [SerializeField] private GameObject friendlyRocketPrefab;
 
     // min and max velocity
     [SerializeField] private Vector2 velocityBoundaries;
 
-    // list to hold all rockets in the game
-    private List<GameObject> rocketList;
-    private Vector2 dDistance;
-
-    private void Awake()
+    public GameObject GenerateRocket(Vector3 targetCoordinates, Vector3 spawnCoordinates, bool isEnemy)
     {
-        // initialize list
-        rocketList = new List<GameObject>();
-    }
-    public void GenerateRocket(Vector3 targetCoordinates)
-    {
-        // creating a copy of a rocket
-        GameObject rocket = Instantiate(rocketPrefab) as GameObject;
+        GameObject rocket = Instantiate(choosePrefab(isEnemy)) as GameObject;
+        rocket.transform.position = new Vector3(spawnCoordinates.x, spawnCoordinates.y, 0);
 
-        // setting random x position and given y position
-        rocket.transform.position = new Vector3(Random.Range(xSpawnBoundaries.x, xSpawnBoundaries.y), yStartPosition, 0);
+        Vector2 directionVector = new Vector2(targetCoordinates.x - rocket.transform.position.x, targetCoordinates.y - rocket.transform.position.y);
+        directionVector = directionVector.normalized;
 
-        // setting angle for rocket to fly at
-        rocket.transform.rotation = Quaternion.Euler(0, 0, findRotation(rocket.transform.position, targetCoordinates));
+        float angle = this.findAngle(directionVector);
+        rocket.transform.rotation = Quaternion.Euler(0, 0, angle);
 
-        // picking random velocity
         float velocity = Random.Range(velocityBoundaries.x, velocityBoundaries.y);
+        rocket.GetComponent<Rigidbody2D>().velocity = directionVector * velocity;
+        Debug.Log("Velocity is " + velocity + " direction vector is " + directionVector + " rocket velocity is " + rocket.GetComponent<Rigidbody2D>().velocity);
 
-        // setting velocity in x and y directions depending on the angle it is supposed to fly
-        rocket.GetComponent<Rigidbody2D>().velocity = new Vector2 (Mathf.Cos((rocket.transform.rotation.eulerAngles.z + 270) / 180 * Mathf.PI) * velocity, Mathf.Sin((rocket.transform.rotation.eulerAngles.z + 270) / 180 * Mathf.PI) * velocity);
-
-        // adding this rocket to the list
-        rocketList.Add(rocket);
+        return rocket;
     }
 
-    private void FixedUpdate()
+    private float findAngle(Vector2 direction)
     {
+        // finding raw angle of direction vector
 
-        for(int i  = 0; i < rocketList.Count; i++)
+        float angle = Mathf.Atan(Mathf.Abs(direction.y) / Mathf.Abs(direction.x)) / Mathf.PI * 180;
+
+        int quarter = this.findQuarter(direction);
+
+        if(quarter % 2 == 0)
         {
-            if (rocketList[i].transform.position.y < yStartPosition * (-1))
+            angle = 90 - angle;
+        }
+
+        angle += 90 * (quarter - 1);
+
+        return angle;
+    }
+
+    private GameObject choosePrefab(bool isEnemy)
+    {
+        if(isEnemy)
+        {
+            return enemyRocketPrefab;
+        }
+        return friendlyRocketPrefab;
+    }
+
+    private int findQuarter (Vector2 direction)
+    {
+        if(direction.x > 0)
+        {
+            if(direction.y > 0)
             {
-                Destroy(rocketList[i]);
-                rocketList.RemoveAt(i);
-
+                return 1;
             }
-        }
-    }
 
-    private float findRotation(Vector3 startPos, Vector3 targetPos)
-    {
-        dDistance = new Vector2(Mathf.Abs(startPos.x - targetPos.x), Mathf.Abs(startPos.y - targetPos.y));
-
-        if (startPos.x < targetPos.x)
-        {
-            return (Mathf.Atan(dDistance.x / dDistance.y)) * 180 / Mathf.PI;
+            return 4;
         }
+
         else
         {
-            return (Mathf.Atan(dDistance.x / dDistance.y)) * 180 / Mathf.PI * -1;
+            if(direction.y > 0)
+            {
+                return 2;
+            }
+
+            return 3;
         }
-        
     }
 }
