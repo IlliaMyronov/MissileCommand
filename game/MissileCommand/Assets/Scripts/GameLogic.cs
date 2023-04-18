@@ -9,9 +9,11 @@ public class GameLogic : MonoBehaviour
     [SerializeField] private List<GameObject> generatorList;
     [SerializeField] private List<GameObject> turretList;
     [SerializeField] private Vector2 respawnTimeRange;
+    [SerializeField] private float turretRechargeTime;
     
 
     private float timeSinceLastSpawn;
+    private float timeSinceLastShot;
     private float respawnTime;
 
     private void Awake()
@@ -44,10 +46,16 @@ public class GameLogic : MonoBehaviour
             timeSinceLastSpawn = 0;
         }
 
-        if(Input.GetMouseButtonUp(0))
+        if(Input.GetMouseButtonUp(0) && timeSinceLastShot > turretRechargeTime)
         {
             Vector2 clickPos = new Vector2(cam.ScreenToWorldPoint(Input.mousePosition).x, cam.ScreenToWorldPoint(Input.mousePosition).y);
             rocketController.CreatePlayerRocket(findClosest(turretList, clickPos).transform.position, clickPos);
+            timeSinceLastShot = 0;
+        }
+
+        if(timeSinceLastShot < respawnTime)
+        {
+            timeSinceLastShot += Time.deltaTime;
         }
     }
 
@@ -58,7 +66,6 @@ public class GameLogic : MonoBehaviour
         {
             return list[element];
         }
-        Debug.Log(element + "    " + list.Count);
         GameObject nextTop = findClosest(list, coordinates, element);
 
         if (findDistance(list[element].transform.position, coordinates) < findDistance(nextTop.transform.position, coordinates))

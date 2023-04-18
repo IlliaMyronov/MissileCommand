@@ -25,7 +25,6 @@ public class RocketSpawner : MonoBehaviour
 
         float velocity = Random.Range(velocityBoundaries.x, velocityBoundaries.y);
         rocket.GetComponent<Rigidbody2D>().velocity = directionVector * velocity;
-        Debug.Log("Velocity is " + velocity + " direction vector is " + directionVector + " rocket velocity is " + rocket.GetComponent<Rigidbody2D>().velocity);
 
         return rocket;
     }
