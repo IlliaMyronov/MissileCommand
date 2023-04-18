@@ -45,13 +45,13 @@ TagManager:
   - name: Background
     uniqueID: 544974523
     locked: 0
-  - name: world
+  - name: World
     uniqueID: 3726611551
     locked: 0
-  - name: buildings
+  - name: Buildings
     uniqueID: 2003274631
     locked: 0
-  - name: New Layer 3
+  - name: Bullets
     uniqueID: 2816056077
     locked: 0
   - name: Text
