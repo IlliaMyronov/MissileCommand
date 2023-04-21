@@ -49,7 +49,7 @@ public class GameLogic : MonoBehaviour
         if(Input.GetMouseButtonUp(0) && timeSinceLastShot > turretRechargeTime)
         {
             Vector2 clickPos = new Vector2(cam.ScreenToWorldPoint(Input.mousePosition).x, cam.ScreenToWorldPoint(Input.mousePosition).y);
-            rocketController.CreatePlayerRocket(findClosest(turretList, clickPos).transform.position, clickPos);
+            rocketController.CreatePlayerRocket(findClosest(turretList, clickPos).transform.GetChild(0).transform.position, clickPos);
             timeSinceLastShot = 0;
         }
 
