@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class PlayerRocket : MonoBehaviour
 {
+    private GameObject gameManager;
     private Vector2 targetCoordinates;
     private GameObject me;
-    private Vector2 direction;
-    private int ID;
+    public int ID;
 
     public void InitializeRocket(Vector2 target, GameObject thisRocket, int id)
     {
@@ -15,11 +15,14 @@ public class PlayerRocket : MonoBehaviour
         me = thisRocket;
         ID = id;
 
-        direction = me.GetComponent<Rigidbody>().velocity;
-        direction = new Vector2 (direction.x / Mathf.Abs(direction.x), direction.y / Mathf.Abs(direction.y));
+        gameManager = GameObject.Find("GameManager");
     }
 
     private void FixedUpdate()
     {
+        if (targetCoordinates.y < me.transform.position.y)
+        {
+            gameManager.GetComponent<RocketController>().ReachedDestination(ID);
+        }
     }
 }
