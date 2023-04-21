@@ -19,7 +19,6 @@ public class EnemyRocket : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("entered collision");
         gameManager.GetComponent<RocketController>().EnemyHitCollider(collision, ID);
     }
 }
