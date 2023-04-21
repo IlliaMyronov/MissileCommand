@@ -156,7 +156,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyRocketPrefab: {fileID: 3015539479763432177, guid: fb1ab260e5207ee40a592e1065248dd5, type: 3}
   friendlyRocketPrefab: {fileID: 3362839241645947424, guid: bda2c0d7023e0f8458510670906f79c7, type: 3}
-  velocityBoundaries: {x: 2, y: 4}
+  velocityBoundaries: {x: 1, y: 2}
 --- !u!114 &13443537
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,7 +180,7 @@ MonoBehaviour:
   - {fileID: 645527990}
   - {fileID: 170421467}
   respawnTimeRange: {x: 0.5, y: 1.5}
-  turretRechargeTime: 0.5
+  turretRechargeTime: 0.25
 --- !u!4 &13443539
 Transform:
   m_ObjectHideFlags: 0
@@ -664,7 +664,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 544974523
   m_SortingLayer: 1
-  m_SortingOrder: 0
+  m_SortingOrder: -5
   m_Sprite: {fileID: 21300000, guid: 7c59fe5c00b00b346bef2c3302f62770, type: 3}
   m_Color: {r: 0.6132076, g: 0.6132076, b: 0.6132076, a: 1}
   m_FlipX: 0
@@ -10265,7 +10265,7 @@ GameObject:
   - component: {fileID: 1701775688}
   - component: {fileID: 1701775689}
   m_Layer: 0
-  m_Name: Light 2D
+  m_Name: Light 2D GLOBAL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
