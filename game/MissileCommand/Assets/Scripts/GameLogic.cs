@@ -9,17 +9,16 @@ public class GameLogic : MonoBehaviour
     [SerializeField] private List<GameObject> generatorList;
     [SerializeField] private List<GameObject> turretList;
     [SerializeField] private Vector2 respawnTimeRange;
-    [SerializeField] private float turretRechargeTime;
-    
 
+    private List<GameObject> readyToShoot;
     private float timeSinceLastSpawn;
-    private float timeSinceLastShot;
     private float respawnTime;
 
     private void Awake()
     {
         timeSinceLastSpawn = 0;
         respawnTime = Random.Range(respawnTimeRange.x, respawnTimeRange.y);
+        readyToShoot = new List<GameObject>();
     }
     private void Update()
     {
@@ -46,29 +45,39 @@ public class GameLogic : MonoBehaviour
             timeSinceLastSpawn = 0;
         }
 
-        if(Input.GetMouseButtonUp(0) && timeSinceLastShot > turretRechargeTime)
+        if(Input.GetMouseButtonUp(0) && this.IsPossibleToShoot(turretList))
         {
             Vector2 clickPos = new Vector2(cam.ScreenToWorldPoint(Input.mousePosition).x, cam.ScreenToWorldPoint(Input.mousePosition).y);
-            rocketController.CreatePlayerRocket(findClosest(turretList, clickPos).transform.GetChild(0).transform.position, clickPos);
-            timeSinceLastShot = 0;
+
+            GameObject shootFrom;
+
+            foreach(GameObject i in turretList)
+            {
+                if (i.GetComponent<TurretReload>().IsShotReady())
+                {
+                    readyToShoot.Add(i);
+                }
+            }
+
+            shootFrom = FindClosest(readyToShoot, clickPos);
+
+            rocketController.CreatePlayerRocket(shootFrom.transform.GetChild(0).transform.position, clickPos);
+            shootFrom.GetComponent<TurretReload>().Shot();
+            readyToShoot.Clear();
         }
 
-        if(timeSinceLastShot < respawnTime)
-        {
-            timeSinceLastShot += Time.deltaTime;
-        }
     }
 
-    private GameObject findClosest(List<GameObject> list, Vector2 coordinates, int element = -1)
+    private GameObject FindClosest(List<GameObject> list, Vector2 coordinates, int element = -1)
     {
         element += 1;
         if(element == list.Count - 1)
         {
             return list[element];
         }
-        GameObject nextTop = findClosest(list, coordinates, element);
+        GameObject nextTop = FindClosest(list, coordinates, element);
 
-        if (findDistance(list[element].transform.position, coordinates) < findDistance(nextTop.transform.position, coordinates))
+        if (FindDistance(list[element].transform.position, coordinates) < FindDistance(nextTop.transform.position, coordinates))
         {
             return list[element];
         }
@@ -78,8 +87,21 @@ public class GameLogic : MonoBehaviour
         }
     }
 
-    private float findDistance(Vector3 obj1, Vector2 obj2)
+    private float FindDistance(Vector3 obj1, Vector2 obj2)
     {
         return Mathf.Sqrt(Mathf.Pow((obj1.x - obj2.x) , 2) + Mathf.Pow((obj1.y - obj2.y) , 2));
+    }
+
+    private bool IsPossibleToShoot(List<GameObject> list)
+    {
+        foreach(GameObject i in list)
+        {
+
+            if (i.GetComponent<TurretReload>().IsShotReady())
+                return true;
+
+        }
+
+        return false;
     }
 }
