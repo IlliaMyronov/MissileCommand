@@ -9,10 +9,7 @@ public class RocketSpawner : MonoBehaviour
     [SerializeField] private GameObject enemyRocketPrefab;
     [SerializeField] private GameObject friendlyRocketPrefab;
 
-    // min and max velocity
-    [SerializeField] private Vector2 velocityBoundaries;
-
-    public GameObject GenerateRocket(Vector3 targetCoordinates, Vector3 spawnCoordinates, bool isEnemy)
+    public GameObject GenerateRocket(Vector3 targetCoordinates, Vector3 spawnCoordinates, float speed, bool isEnemy)
     {
         GameObject rocket = Instantiate(choosePrefab(isEnemy)) as GameObject;
         rocket.transform.position = new Vector3(spawnCoordinates.x, spawnCoordinates.y, 0);
@@ -23,8 +20,7 @@ public class RocketSpawner : MonoBehaviour
         float angle = this.findAngle(directionVector);
         rocket.transform.rotation = Quaternion.Euler(0, 0, angle);
 
-        float velocity = Random.Range(velocityBoundaries.x, velocityBoundaries.y);
-        rocket.GetComponent<Rigidbody2D>().velocity = directionVector * velocity;
+        rocket.GetComponent<Rigidbody2D>().velocity = directionVector * speed;
 
         return rocket;
     }

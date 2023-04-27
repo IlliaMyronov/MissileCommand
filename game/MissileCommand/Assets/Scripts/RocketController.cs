@@ -6,25 +6,31 @@ using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCou
 public class RocketController : MonoBehaviour
 {
     [SerializeField] private RocketSpawner spawnerScript;
+    [SerializeField] private ExplosionSpawner explosionSpawner;
     [SerializeField] private Vector2 xRocketLaunchRange;
     [SerializeField] private float yRocketLaunch;
+    [SerializeField] private Vector2 enemyRocketVelocities;
+    [SerializeField] private float playerRocketVelocity;
+    [SerializeField] private float enemyRocketExplosionRadius;
 
     private List<GameObject> enemyRockets;
     private List<GameObject> playerRockets;
+    private List<GameObject> explosions;
     private int idCounter;
 
     private void Awake()
     {
         enemyRockets = new List<GameObject>();
         playerRockets = new List<GameObject>();
+        explosions = new List<GameObject>();
         idCounter = 0;
     }
 
     public void CreateEnemyRocket(Vector3 targetCoordinates)
     {
-        GameObject rocketToAdd = spawnerScript.GenerateRocket(targetCoordinates, new Vector2(Random.Range(xRocketLaunchRange.x, xRocketLaunchRange.y), yRocketLaunch), true);
+        GameObject rocketToAdd = spawnerScript.GenerateRocket(targetCoordinates, new Vector2(Random.Range(xRocketLaunchRange.x, xRocketLaunchRange.y), yRocketLaunch), GetRandomValue(enemyRocketVelocities), true);
 
-        rocketToAdd.GetComponent<EnemyRocket>().InitializeRocket(idCounter);
+        rocketToAdd.GetComponent<EnemyRocket>().InitializeRocket(idCounter, enemyRocketExplosionRadius);
         idCounter++;
 
         enemyRockets.Add(rocketToAdd);
@@ -32,7 +38,7 @@ public class RocketController : MonoBehaviour
 
     public void CreatePlayerRocket(Vector3 startCoordinates, Vector3 targetCoordinates)
     {
-        GameObject rocketToAdd = spawnerScript.GenerateRocket(targetCoordinates, startCoordinates, false);
+        GameObject rocketToAdd = spawnerScript.GenerateRocket(targetCoordinates, startCoordinates, playerRocketVelocity, false);
 
         rocketToAdd.GetComponent<PlayerRocket>().InitializeRocket(targetCoordinates, rocketToAdd, idCounter);
         idCounter++;
@@ -46,8 +52,7 @@ public class RocketController : MonoBehaviour
         {
             if (enemyRockets[i].transform.position.y < -10)
             {
-                Destroy(enemyRockets[i]);
-                enemyRockets.RemoveAt(i);
+                this.AddExplosion(enemyRockets, i);
             }
         }
 
@@ -55,23 +60,23 @@ public class RocketController : MonoBehaviour
         {
             if (playerRockets[i].transform.position.y > 10)
             {
-                Destroy(playerRockets[i]);
-                playerRockets.RemoveAt(i);
+                this.AddExplosion(playerRockets, i);
             }
         }
     }
 
-    public void EnemyHitCollider(Collision2D collision, int id)
+    public void HitPlayer(int id, RaycastHit2D hit)
     {
-        if (collision.gameObject.name != "Enemy Rocket" && collision.gameObject.name != "Player Rocket")
+        string hitName = hit.transform.gameObject.name;
+        Debug.Log("hit on " + hitName + " coordinates of an object hit " + hit.transform.position + " id of a rocket that hit " + id);
+        if ((hitName.Contains("Explosion") || hitName.Contains("Cannon") || hitName.Contains("Generator")) && !hitName.Contains("Tilemap"))
         {
-
             for (int i = 0; i < enemyRockets.Count; i++)
             {
                 if (enemyRockets[i].GetComponent<EnemyRocket>().ID == id)
                 {
-                    Destroy(enemyRockets[i]);
-                    enemyRockets.RemoveAt(i);
+                    this.AddExplosion(enemyRockets, i);
+                    return;
                 }
             }
         }
@@ -83,9 +88,39 @@ public class RocketController : MonoBehaviour
         {
             if (playerRockets[i].GetComponent<PlayerRocket>().ID == id)
             {
-                Destroy(playerRockets[i]);
-                playerRockets.RemoveAt(i);
+                this.AddExplosion(playerRockets, i);
+                return;
             }
         }
+    }
+
+    private float GetRandomValue(Vector2 maxMin)
+    {
+        return Random.Range(maxMin.x, maxMin.y);
+    }
+
+    public void ExplosionOver(int id)
+    {
+
+        for (int i = 0; i < explosions.Count; i++)
+        {
+            if (explosions[i].GetComponent<Explosion>().ID == id)
+            {
+                Destroy(explosions[i]);
+                explosions.RemoveAt(i);
+            }
+        }
+    }
+
+    private void AddExplosion(List<GameObject> explodedObjectList, int objectID)
+    {
+        GameObject explosionToAdd = explosionSpawner.CreateExplosion(new Vector2(explodedObjectList[objectID].transform.position.x, explodedObjectList[objectID].transform.position.y));
+
+        explosionToAdd.GetComponent<Explosion>().InitializeExplosion(idCounter);
+        idCounter++;
+        explosions.Add(explosionToAdd);
+
+        Destroy(explodedObjectList[objectID]);
+        explodedObjectList.RemoveAt(objectID);
     }
 }
