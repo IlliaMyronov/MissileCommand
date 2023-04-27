@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 13443537}
   - component: {fileID: 13443536}
   - component: {fileID: 13443540}
+  - component: {fileID: 13443541}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -156,7 +157,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyRocketPrefab: {fileID: 3015539479763432177, guid: fb1ab260e5207ee40a592e1065248dd5, type: 3}
   friendlyRocketPrefab: {fileID: 3362839241645947424, guid: bda2c0d7023e0f8458510670906f79c7, type: 3}
-  velocityBoundaries: {x: 1, y: 2}
 --- !u!114 &13443537
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,7 +180,6 @@ MonoBehaviour:
   - {fileID: 645527990}
   - {fileID: 170421467}
   respawnTimeRange: {x: 0.5, y: 1.5}
-  turretRechargeTime: 0.25
 --- !u!4 &13443539
 Transform:
   m_ObjectHideFlags: 0
@@ -209,8 +208,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnerScript: {fileID: 13443536}
+  explosionSpawner: {fileID: 13443541}
   xRocketLaunchRange: {x: -10, y: 10}
   yRocketLaunch: 10
+  enemyRocketVelocities: {x: 1, y: 2}
+  playerRocketVelocity: 4
+  enemyRocketExplosionRadius: 0.1
+--- !u!114 &13443541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 13443535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 867165d19215b784fbb956243e5034e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosionPrefab: {fileID: 1071574982130887821, guid: 1a5ed946cece22d41b61751e6bd82cd8, type: 3}
 --- !u!1 &54640770
 GameObject:
   m_ObjectHideFlags: 0
