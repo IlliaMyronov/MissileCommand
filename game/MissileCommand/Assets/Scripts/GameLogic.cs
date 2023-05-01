@@ -9,16 +9,32 @@ public class GameLogic : MonoBehaviour
     [SerializeField] private List<GameObject> generatorList;
     [SerializeField] private List<GameObject> turretList;
     [SerializeField] private Vector2 respawnTimeRange;
+    [SerializeField] private float maxReloadTime;
+    [SerializeField] private float generatorPower;
 
     private List<GameObject> readyToShoot;
     private float timeSinceLastSpawn;
     private float respawnTime;
+    private float reloadTime;
 
     private void Awake()
     {
         timeSinceLastSpawn = 0;
         respawnTime = Random.Range(respawnTimeRange.x, respawnTimeRange.y);
         readyToShoot = new List<GameObject>();
+
+        // ignore collision between enemy rockets
+        Physics2D.IgnoreLayerCollision(7, 7);
+
+        // ignore collision between player rockets
+        Physics2D.IgnoreLayerCollision(8, 8);
+
+        // ignore collision between player rockets and buildings
+        Physics2D.IgnoreLayerCollision(8, 9);
+
+        // calculate initial reloadTime
+        reloadTime = maxReloadTime / (generatorList.Count * generatorPower);
+        this.UpdateReloadTime();
     }
     private void Update()
     {
@@ -103,5 +119,57 @@ public class GameLogic : MonoBehaviour
         }
 
         return false;
+    }
+
+    public void BuildingDestroyed(string name)
+    {
+
+        if (name.Contains("Cannon"))
+        {
+
+            for(int i = 0; i < turretList.Count; i++)
+            {
+
+                if (turretList[i].name == name)
+                {
+                    Destroy(turretList[i]);
+                    turretList.RemoveAt(i);
+                }
+            }
+        }
+
+        else
+        {
+
+            for (int i = 0; i < generatorList.Count; i++)
+            {
+
+                if (generatorList[i].name == name)
+                {
+                    Destroy(generatorList[i]);
+                    generatorList.RemoveAt(i);
+
+                    if(generatorList.Count > 0)
+                    {
+                        reloadTime = maxReloadTime / (generatorList.Count * generatorPower);
+                    }
+
+                    else
+                    {
+                        reloadTime = maxReloadTime;
+                    }
+
+                    this.UpdateReloadTime();
+                }
+            }
+        }
+    }
+
+    private void UpdateReloadTime()
+    {
+        foreach(GameObject turret in turretList)
+        {
+            turret.GetComponent<TurretReload>().ChangeReloadTime(reloadTime);
+        }
     }
 }

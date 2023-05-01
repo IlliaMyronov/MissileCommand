@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8203236531315059255}
   - component: {fileID: 7673952315814724166}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Light 2D (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -121,7 +121,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6924825086202848812}
   - component: {fileID: 494172618189063645}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Light 2D (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -232,7 +232,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9099561222717811069}
   - component: {fileID: 1388411380391846271}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -343,7 +343,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4669529599240049170}
   - component: {fileID: 6795657708223809959}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Light 2D (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -454,7 +454,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6204764811406284534}
   - component: {fileID: 6331828063038001609}
-  m_Layer: 0
+  - component: {fileID: -3155185144864842495}
+  m_Layer: 9
   m_Name: Generator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -526,6 +527,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.8063606, y: 0.8292222}
   m_EdgeRadius: 0
+--- !u!114 &-3155185144864842495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4566714221577322707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 173ac3337f8141f43993fd433f988c5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5293363501296810655
 GameObject:
   m_ObjectHideFlags: 0
@@ -536,7 +549,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7116310891912341214}
   - component: {fileID: 22264638466002822}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: tower1red
   m_TagString: Untagged
   m_Icon: {fileID: 0}

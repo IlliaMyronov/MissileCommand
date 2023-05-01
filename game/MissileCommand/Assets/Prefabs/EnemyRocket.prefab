@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 732078975424352043}
   - component: {fileID: 7877824727450512705}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,8 +124,8 @@ GameObject:
   - component: {fileID: 5315826586914608899}
   - component: {fileID: -7864520995648230307}
   - component: {fileID: 3764927218390178761}
-  m_Layer: 0
-  m_Name: RedBullet
+  m_Layer: 7
+  m_Name: EnemyRocket
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -247,7 +247,7 @@ CapsuleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3015539479763432177}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -284,7 +284,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7752342433178826407}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TargetSearch
   m_TagString: Untagged
   m_Icon: {fileID: 0}

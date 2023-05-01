@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TurretReload : MonoBehaviour
 {
-    [SerializeField] float reloadTime;
+    private float reloadTime;
 
     private float timeSinceShot;
 
@@ -29,5 +29,10 @@ public class TurretReload : MonoBehaviour
     public void Shot()
     {
         timeSinceShot = 0;
+    }
+
+    public void ChangeReloadTime(float newTime)
+    {
+        reloadTime = newTime;
     }
 }

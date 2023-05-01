@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 
 public class EnemyRocket : MonoBehaviour
@@ -9,13 +10,10 @@ public class EnemyRocket : MonoBehaviour
     public int ID;
     private float detonationRadius;
 
-    // variable added to eliminated errors in explosion of two rockets at the same time
-    private float debugDetonationRadius;
-
+    
     private void Awake()
     {
         gameManager = GameObject.Find("GameManager");
-        debugDetonationRadius = 2.5f;
     }
 
     public void InitializeRocket(int id, float detectionDistance)
@@ -24,17 +22,29 @@ public class EnemyRocket : MonoBehaviour
         detonationRadius = detectionDistance;
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        gameManager.GetComponent<RocketController>().EnemyCollision(ID, collision);
+    }
     private void FixedUpdate()
     {
         RaycastHit2D hit = Physics2D.Raycast(this.transform.GetChild(0).transform.position, this.transform.right, detonationRadius);
 
         if (hit)
         {
-            Debug.Log(Mathf.Pow(hit.transform.gameObject.transform.position.x - this.transform.GetChild(0).transform.position.x, 2) +
-                           Mathf.Pow(hit.transform.gameObject.transform.position.y - this.transform.GetChild(0).transform.position.y, 2));
-            if (Mathf.Sqrt(Mathf.Pow(hit.transform.gameObject.transform.position.x - this.transform.GetChild(0).transform.position.x, 2) +
-                           Mathf.Pow(hit.transform.gameObject.transform.position.y - this.transform.GetChild(0).transform.position.y, 2)) < debugDetonationRadius)
+            if (hit.transform.gameObject.name.Contains("Explosion"))
             {
+                if(hit.transform.gameObject.GetComponent<Explosion>().expanded)
+                {
+                    gameManager.GetComponent<RocketController>().HitPlayer(ID, hit);
+                }
+            }
+            else
+            {
+                if (hit.transform.gameObject.name.Contains("Cannon") || hit.transform.gameObject.name.Contains("Generator"))
+                {
+                    gameManager.GetComponent<GameLogic>().BuildingDestroyed(hit.transform.gameObject.name);
+                }
                 gameManager.GetComponent<RocketController>().HitPlayer(ID, hit);
             }
         }

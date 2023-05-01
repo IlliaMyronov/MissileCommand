@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5323861101885891097}
   - component: {fileID: 4503197957764336616}
   - component: {fileID: 3846784345988456017}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Explosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,6 +101,7 @@ MonoBehaviour:
   maxRadius: 0.3
   explosionSpeed: 0.5
   ID: 0
+  expanded: 0
 --- !u!58 &3846784345988456017
 CircleCollider2D:
   m_ObjectHideFlags: 0

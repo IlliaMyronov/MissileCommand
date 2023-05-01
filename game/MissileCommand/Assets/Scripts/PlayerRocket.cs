@@ -25,4 +25,9 @@ public class PlayerRocket : MonoBehaviour
             gameManager.GetComponent<RocketController>().ReachedDestination(ID);
         }
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        gameManager.GetComponent<RocketController>().PlayerCollision(ID, collision);
+    }
 }

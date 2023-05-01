@@ -180,6 +180,8 @@ MonoBehaviour:
   - {fileID: 645527990}
   - {fileID: 170421467}
   respawnTimeRange: {x: 0.5, y: 1.5}
+  maxReloadTime: 3
+  generatorPower: 2
 --- !u!4 &13443539
 Transform:
   m_ObjectHideFlags: 0

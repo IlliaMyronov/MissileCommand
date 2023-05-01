@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 6354752073031970442}
   - component: {fileID: 3456210308247921653}
   - component: {fileID: 6693902032311639241}
-  m_Layer: 0
-  m_Name: blue%20arrow
+  m_Layer: 8
+  m_Name: PlayerRocket
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -114,7 +114,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &3456210308247921653
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135,7 +135,7 @@ CapsuleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3362839241645947424}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -173,7 +173,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4769264001814566321}
   - component: {fileID: 2143820822144803997}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}

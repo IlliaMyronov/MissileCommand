@@ -63,12 +63,17 @@ public class RocketController : MonoBehaviour
                 this.AddExplosion(playerRockets, i);
             }
         }
+
+        if(idCounter > 200)
+        {
+            idCounter = 0;
+        }
     }
 
     public void HitPlayer(int id, RaycastHit2D hit)
     {
         string hitName = hit.transform.gameObject.name;
-        Debug.Log("hit on " + hitName + " coordinates of an object hit " + hit.transform.position + " id of a rocket that hit " + id);
+
         if ((hitName.Contains("Explosion") || hitName.Contains("Cannon") || hitName.Contains("Generator")) && !hitName.Contains("Tilemap"))
         {
             for (int i = 0; i < enemyRockets.Count; i++)
@@ -122,5 +127,29 @@ public class RocketController : MonoBehaviour
 
         Destroy(explodedObjectList[objectID]);
         explodedObjectList.RemoveAt(objectID);
+    }
+
+    public void EnemyCollision(int id, Collision2D collision)
+    {
+        for (int i = 0; i < enemyRockets.Count; i++)
+        {
+            if (enemyRockets[i].GetComponent<EnemyRocket>().ID == id)
+            {
+                this.AddExplosion(enemyRockets, i);
+                return;
+            }
+        }   
+    }
+
+    public void PlayerCollision(int id, Collision2D collision)
+    {
+        for (int i = 0; i < playerRockets.Count; i++)
+        {
+            if (playerRockets[i].GetComponent<PlayerRocket>().ID == id)
+            {
+                this.AddExplosion(playerRockets, i);
+                return;
+            }
+        }
     }
 }

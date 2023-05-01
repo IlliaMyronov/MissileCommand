@@ -12,6 +12,7 @@ public class Explosion : MonoBehaviour
     private float changeBy;
     public int ID;
     private GameObject gameManager;
+    public bool expanded;
 
     private void Awake()
     {
@@ -27,6 +28,10 @@ public class Explosion : MonoBehaviour
         ID = id;
     }
 
+    public void Start()
+    {
+        expanded = true;
+    }
     private void Update()
     {
         changeBy = explosionSpeed * Time.deltaTime;
@@ -36,5 +41,10 @@ public class Explosion : MonoBehaviour
         {
             gameManager.GetComponent<RocketController>().ExplosionOver(ID);
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log("collided");
     }
 }
