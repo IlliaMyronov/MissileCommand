@@ -2253,7 +2253,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1651185320}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: Boop
+        m_MethodName: QuitGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
