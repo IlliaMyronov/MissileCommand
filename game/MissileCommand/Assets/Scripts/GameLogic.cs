@@ -11,6 +11,7 @@ public class GameLogic : MonoBehaviour
     [SerializeField] private Vector2 respawnTimeRange;
     [SerializeField] private float maxReloadTime;
     [SerializeField] private float generatorPower;
+    [SerializeField] private AudioSource playerfiresound;
 
     private List<GameObject> readyToShoot;
     private float timeSinceLastSpawn;
@@ -64,6 +65,8 @@ public class GameLogic : MonoBehaviour
         if(Input.GetMouseButtonUp(0) && this.IsPossibleToShoot(turretList))
         {
             Vector2 clickPos = new Vector2(cam.ScreenToWorldPoint(Input.mousePosition).x, cam.ScreenToWorldPoint(Input.mousePosition).y);
+
+            playerfiresound.Play();
 
             GameObject shootFrom;
 

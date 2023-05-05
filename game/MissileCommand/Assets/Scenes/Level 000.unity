@@ -1499,7 +1499,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: d4dc55a25038b8842b3b529deaf6b9dc, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 0903d74a955c84d4180399d79ddf4cc8, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -1913,7 +1913,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: ALPHA 2023.5.3
+  m_Text: ALPHA 2023.5.5
 --- !u!222 &1884135118
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2253,7 +2253,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1651185320}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: QuitGame
+        m_MethodName: OpenCredits
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

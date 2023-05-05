@@ -11,6 +11,7 @@ public class RocketController : MonoBehaviour
     [SerializeField] private Vector2 enemyRocketVelocities;
     [SerializeField] private float playerRocketVelocity;
     [SerializeField] private float enemyRocketExplosionRadius;
+    [SerializeField] private AudioSource explosionsound;
 
     private List<GameObject> enemyRockets;
     private List<GameObject> playerRockets;
@@ -118,6 +119,8 @@ public class RocketController : MonoBehaviour
 
     private void AddExplosion(List<GameObject> explodedObjectList, int objectID)
     {
+        explosionsound.Play();
+
         GameObject explosionToAdd = explosionSpawner.CreateExplosion(new Vector2(explodedObjectList[objectID].transform.position.x, explodedObjectList[objectID].transform.position.y));
 
         explosionToAdd.GetComponent<Explosion>().InitializeExplosion(idCounter);

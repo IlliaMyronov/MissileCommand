@@ -25,7 +25,7 @@ public class MainMenu : MonoBehaviour
 		SceneManager.LoadScene("Level 001");
 	}
 
-	public void QuitGame()
+	public void OpenCredits()
 	{
 		select.Play();
 		SceneManager.LoadScene("Level 004 CREDITS");
@@ -36,8 +36,12 @@ public class MainMenu : MonoBehaviour
 		select.Play();
 	}
 
-
-
+	public void QuitGame()
+	{
+		select.Play();
+		Debug.Log("QUIT!");
+		Application.Quit();
+	}
 
 
 
