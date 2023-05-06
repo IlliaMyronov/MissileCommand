@@ -19,10 +19,28 @@ public class MainMenu : MonoBehaviour
 		boop.Play();
 	}
 
+	public void OpenMainMenu()
+	{
+		select.Play();
+		SceneManager.LoadScene("Level 000");
+	}
+
 	public void StartGame()
 	{
 		select.Play();
 		SceneManager.LoadScene("Level 001");
+	}
+
+	public void OpenGameOver()
+	{
+		select.Play();
+		SceneManager.LoadScene("Level 002 GAME OVER");
+	}
+
+	public void OpenHighScore()
+	{
+		select.Play();
+		SceneManager.LoadScene("Level 003 HIGH SCORE");
 	}
 
 	public void OpenCredits()
