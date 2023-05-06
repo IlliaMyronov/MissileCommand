@@ -185,6 +185,7 @@ MonoBehaviour:
   maxReloadTime: 3
   generatorPower: 2
   playerfiresound: {fileID: 13443542}
+  scoreMultiplier: 1
 --- !u!4 &13443539
 Transform:
   m_ObjectHideFlags: 0

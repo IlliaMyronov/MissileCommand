@@ -81,6 +81,7 @@ public class RocketController : MonoBehaviour
                 if (enemyRockets[i].GetComponent<EnemyRocket>().ID == id)
                 {
                     this.AddExplosion(enemyRockets, i);
+                    this.AddScore();
                     return;
                 }
             }
@@ -138,6 +139,7 @@ public class RocketController : MonoBehaviour
             if (enemyRockets[i].GetComponent<EnemyRocket>().ID == id)
             {
                 this.AddExplosion(enemyRockets, i);
+                AddScore();
                 return;
             }
         }   
@@ -153,5 +155,10 @@ public class RocketController : MonoBehaviour
                 return;
             }
         }
+    }
+
+    private void AddScore()
+    {
+        GameObject.Find("GameManager").GetComponent<GameLogic>().IncreaseScore();
     }
 }

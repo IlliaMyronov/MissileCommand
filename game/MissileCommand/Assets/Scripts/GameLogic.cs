@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class GameLogic : MonoBehaviour
 {
@@ -12,11 +14,14 @@ public class GameLogic : MonoBehaviour
     [SerializeField] private float maxReloadTime;
     [SerializeField] private float generatorPower;
     [SerializeField] private AudioSource playerfiresound;
+    [SerializeField] private float scoreMultiplier;
 
     private List<GameObject> readyToShoot;
     private float timeSinceLastSpawn;
     private float respawnTime;
     private float reloadTime;
+    private float timeSurvived;
+    private float score;
 
     private void Awake()
     {
@@ -39,6 +44,9 @@ public class GameLogic : MonoBehaviour
     }
     private void Update()
     {
+
+        timeSurvived += Time.deltaTime;
+
         if(timeSinceLastSpawn < respawnTime)
         {
             timeSinceLastSpawn += Time.deltaTime;
@@ -137,6 +145,12 @@ public class GameLogic : MonoBehaviour
                 {
                     Destroy(turretList[i]);
                     turretList.RemoveAt(i);
+
+                    if(turretList.Count == 0)
+                    {
+                        SceneManager.LoadScene("Level 000");
+                        Debug.Log("You managed to achieve score of: " + score + " and you survived " + timeSurvived + " seconds!");
+                    }
                 }
             }
         }
@@ -174,5 +188,20 @@ public class GameLogic : MonoBehaviour
         {
             turret.GetComponent<TurretReload>().ChangeReloadTime(reloadTime);
         }
+    }
+
+    public void IncreaseScore()
+    {
+        score += scoreMultiplier;
+    }
+
+    public float GetTime()
+    {
+        return timeSurvived;
+    }
+
+    public float GetScore()
+    {
+        return score;
     }
 }
