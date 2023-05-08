@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5890e0b42eb63234fb2187aa88a6f0ce
+guid: b28bf0f5299d2af40a88c2decb8dd9b5
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - Zen Tokyo Zoo
+  - Orbitron
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0

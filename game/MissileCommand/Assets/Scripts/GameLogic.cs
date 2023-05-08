@@ -148,7 +148,7 @@ public class GameLogic : MonoBehaviour
 
                     if(turretList.Count == 0)
                     {
-                        SceneManager.LoadScene("Level 000");
+                        SceneManager.LoadScene("Level 002 GAME OVER");
                         Debug.Log("You managed to achieve score of: " + score + " and you survived " + timeSurvived + " seconds!");
                     }
                 }

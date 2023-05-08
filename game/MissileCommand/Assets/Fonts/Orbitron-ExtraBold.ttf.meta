@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 93d4c3caac86e174293532fa1fa7f294
+guid: f285b3326e0c5384eb2d6132d2902aea
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,8 +9,9 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - Bungee Hairline
-  fallbackFontReferences: []
+  - Orbitron
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: b28bf0f5299d2af40a88c2decb8dd9b5, type: 3}
   customCharacters: 
   fontRenderingMode: 0
   ascentCalculationMode: 1
