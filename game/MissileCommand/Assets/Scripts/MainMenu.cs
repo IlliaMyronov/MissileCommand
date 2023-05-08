@@ -7,17 +7,7 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
 	[SerializeField] private AudioSource select;
-	[SerializeField] private AudioSource boop;
 
-
-
-
-
-
-	public void Boop()
-	{
-		boop.Play();
-	}
 
 	public void OpenMainMenu()
 	{

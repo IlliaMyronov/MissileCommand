@@ -1231,7 +1231,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   select: {fileID: 518366738}
-  boop: {fileID: 0}
 --- !u!1 &535903529
 GameObject:
   m_ObjectHideFlags: 0
@@ -3445,7 +3444,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 7c59fe5c00b00b346bef2c3302f62770, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6e314be102d3e334c8fb22db86ad3b4a, type: 3}
   m_Color: {r: 0.08664116, g: 0.12514864, b: 0.31132078, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3963,7 +3962,7 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 12800000, guid: bf9d8dbe76a16a14daf3a3eee103fdfa, type: 3}
     m_FontSize: 16
-    m_FontStyle: 1
+    m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
     m_MaxSize: 40
