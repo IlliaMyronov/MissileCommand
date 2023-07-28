@@ -21,7 +21,7 @@ public class GameLogic : MonoBehaviour
     private float respawnTime;
     private float reloadTime;
     private float timeSurvived;
-    private float score;
+    public static float score;
 
     private void Awake()
     {

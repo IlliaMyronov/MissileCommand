@@ -6,10 +6,9 @@ using UnityEngine.UI;
 
 public class YourScore : MonoBehaviour
 {
-	[SerializeField] private GameObject gameManager;
 
-	private void FixedUpdate()
+	private void Awake()
 	{
-		this.gameObject.transform.GetChild(3).GetComponent<Text>().text = gameManager.GetComponent<GameLogic>().GetScore().ToString();
+		this.gameObject.transform.GetChild(2).GetComponent<Text>().text = GameLogic.score.ToString();
 	}
 }

@@ -219,7 +219,7 @@ MonoBehaviour:
   explosionSpawner: {fileID: 13443541}
   xRocketLaunchRange: {x: -10, y: 10}
   yRocketLaunch: 10
-  enemyRocketVelocities: {x: 0.5, y: 1.5}
+  enemyRocketVelocities: {x: 2, y: 4}
   playerRocketVelocity: 3
   enemyRocketExplosionRadius: 0.1
   explosionsound: {fileID: 13443543}
