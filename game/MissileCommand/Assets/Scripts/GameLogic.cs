@@ -15,15 +15,13 @@ public class GameLogic : MonoBehaviour
     [SerializeField] private float generatorPower;
     [SerializeField] private AudioSource playerfiresound;
     [SerializeField] private float scoreMultiplier;
-    public AudioSource transitionSound2;
-    public GameObject gameoverTransition;
 
     private List<GameObject> readyToShoot;
     private float timeSinceLastSpawn;
     private float respawnTime;
     private float reloadTime;
     private float timeSurvived;
-    public float score;
+    public static float score;
 
     private void Awake()
     {
@@ -134,14 +132,7 @@ public class GameLogic : MonoBehaviour
         return false;
     }
 
-	public void GameOver()
-	{
-		transitionSound2.Play();
-		Debug.Log("You managed to achieve score of: " + score + " and you survived " + timeSurvived + " seconds!");
-		gameoverTransition.SetActive(true);
-	}
-
-	public void BuildingDestroyed(string name)
+    public void BuildingDestroyed(string name)
     {
 
         if (name.Contains("Cannon"))
@@ -157,7 +148,8 @@ public class GameLogic : MonoBehaviour
 
                     if(turretList.Count == 0)
                     {
-                        GameOver();
+                        SceneManager.LoadScene("Level 002 GAME OVER");
+                        Debug.Log("You managed to achieve score of: " + score + " and you survived " + timeSurvived + " seconds!");
                     }
                 }
             }
