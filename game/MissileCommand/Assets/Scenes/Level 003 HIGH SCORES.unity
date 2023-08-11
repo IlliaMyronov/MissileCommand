@@ -631,7 +631,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 518366732}
-  m_Enabled: 0
+  m_Enabled: 1
 --- !u!20 &518366734
 Camera:
   m_ObjectHideFlags: 0
@@ -748,7 +748,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 518366732}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 9e924037567679c4b8c2a035597b612e, type: 3}
@@ -844,7 +844,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 518366732}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: ab8c313e2994b7842b9e47ba2358c42f, type: 3}
@@ -1859,7 +1859,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leaderPrefab: {fileID: 4796071113391959085, guid: 7940b362fcc36a44f9a8b4cdb6088a66, type: 3}
-  leaderboardPos: {x: 500, y: 400}
+  leaderboardPos: {x: 360, y: 300}
   spaceBetweenLeaders: 30
   maxLeaders: 7
   saveReader: {fileID: 1346143491}

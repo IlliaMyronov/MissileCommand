@@ -39,7 +39,6 @@ public class WorldManager : MonoBehaviour
                     fertileTiles.Add(new Vector3Int((int)map[i][j].transform.position.x, (int)map[i][j].transform.position.y, 0), map[i][j]);
             }
         }
-        Debug.Log(fertileTiles.Count);
     }
 
     public int GetNumOfPlants()
@@ -64,5 +63,10 @@ public class WorldManager : MonoBehaviour
         plants[coordinates.y][coordinates.x] = plant;
 
         fertileTiles.Remove(coordinates);
+    }
+
+    public List<List<GameObject>> GetMap()
+    {
+        return map;
     }
 }

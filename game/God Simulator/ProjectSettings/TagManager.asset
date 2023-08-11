@@ -41,3 +41,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: tiles
+    uniqueID: 3511031371
+    locked: 0
+  - name: vegetation
+    uniqueID: 2412850927
+    locked: 0
+  - name: character
+    uniqueID: 2637987781
+    locked: 0
