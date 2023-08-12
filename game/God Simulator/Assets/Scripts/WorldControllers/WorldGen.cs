@@ -42,15 +42,15 @@ public class WorldGen : MonoBehaviour
                 if ((i > maxContinentBorder * perlinValue && worldSize.y - i > maxContinentBorder * perlinValue) &&
                     (j > maxContinentBorder * perlinValue && worldSize.x - j > maxContinentBorder * perlinValue))
                 {
-
-                    map[i].Add(this.CreateTile("Grass", new Vector3(worldSize.x - j, worldSize.y - i, 0)));
+                    // worldSize.x - j and worldSize.y - i was used but it resulted in coordinates and array location being mirrored
+                    map[i].Add(this.CreateTile("Grass", new Vector3(j, i, 0)));
 
                 }
 
                 else
                 {
 
-                    map[i].Add(this.CreateTile("Water", new Vector3(worldSize.x - j, worldSize.y - i, 0)));
+                    map[i].Add(this.CreateTile("Water", new Vector3(j, i, 0)));
 
                 }                
 
@@ -181,7 +181,7 @@ public class WorldGen : MonoBehaviour
                     {
                         Destroy(map[i][j]);
 
-                        map[i][j] = this.CreateTile("Sand", new Vector3(worldSize.x - j, worldSize.y - i, 0));
+                        map[i][j] = this.CreateTile("Sand", new Vector3(j, i, 0));
 
                     }
                 }
@@ -207,7 +207,7 @@ public class WorldGen : MonoBehaviour
 
                         Destroy(map[i][j]);
 
-                        map[i][j] = this.CreateTile("ShallowWater", new Vector3(worldSize.x - j, worldSize.y - i, 0));
+                        map[i][j] = this.CreateTile("ShallowWater", new Vector3(j, i, 0));
 
                     }
                 }
