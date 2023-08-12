@@ -5,10 +5,10 @@ using UnityEngine;
 public class TileInfo : MonoBehaviour
 {
     [SerializeField] private int growthDifficulty;
-    [SerializeField] private int moveDifficulty;
+    [SerializeField] private float moveDifficulty;
     [SerializeField] private List<GameObject> growableObjects;
 
-    public int GetMoveDifficulty()
+    public float GetMoveDifficulty()
     {
         return moveDifficulty;
     }

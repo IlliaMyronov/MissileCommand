@@ -27,7 +27,8 @@ public class PlantGrowth : MonoBehaviour
                 
                 currentStep++;
                 GetComponent<SpriteRenderer>().sprite = growthSteps[currentStep];
-                timeSinceGrown = 0; 
+                timeSinceGrown = 0;
+
             }
 
             else
